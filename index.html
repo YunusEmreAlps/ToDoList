@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do Example</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- css -->
+    <link rel="stylesheet" href="index.css"/>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    
+</head>
+<body>
+    
+    <div class="container w-sm-100 p-5" id="app">
+        <div class="form-group ldesgn">
+            <h2 class="text-dark text-center display-3 pb-3">My Tasks</h2>
+            <div class="alert alert-info" role="alert"  v-if="todos.length==0">
+               Task list is empty
+            </div>
+            <div class="alert alert-danger" role="alert"  v-if="control==true && todos.length!=0 ">
+                This task has on your list.
+            </div>
+            <div class="alert alert-success" role="alert"  v-if="control==false && todos.length!=0">
+                Success
+            </div>
+            <input class="form-control text-dark" type="text" @keypress.enter="addAct($event)" placeholder="Add new a new task"><br/>
+            <ol class="form-check text-dark">
+                <li v-for="todo in todos">
+                    <label>
+                        <input class="text-dark" type="checkbox" v-on:change="toggle(todo)" v-bind:checked="todo.done">
+                        <del class="text-success" v-if="todo.done" v-text="todo.text"></del>
+                        <span class="text-danger" v-else="todo.done" v-text="todo.text"></span>
+
+                    </label>
+                    <i  type="button" class="material-icons float-right text-danger" v-on:click="delbut(todo.text)">&#xe872;</i>
+                    <hr/>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                // string, boolean
+                todos:[
+                    {text:"Cook", done:false},
+                    {text:"Code", done:true},
+                    {text:"Basketball", done:true},
+                    {text:"Sleep", done:false}
+                ],
+                index:0,
+                control:null
+            },
+            methods : {
+                toggle:function(todo){
+                    todo.done= !todo.done;
+                },    
+                addAct(e){
+                    if(e.target.value.length!=0)
+                    {
+                        for(var i=0; i<this.todos.length; i++)
+                        {
+                            this.control=false;
+                            if(e.target.value == this.todos[i].text){
+                                this.control = true;
+                                return true;
+                                break;
+                            }
+                        }
+                        if(this.control == false || this.todos.length==0)
+                        {
+                            this.todos.push({text:e.target.value, done:false});   
+                            return false;   
+                        }
+                    }
+                },
+                delbut(tx){
+
+                    console.log(tx.key);
+
+                    for(var i=0; i<this.todos.length; i++)
+                    {
+                        if(this.todos[i].text==tx)
+                        {
+                            this.index = i;
+                            break;
+                        }
+                        else
+                            this.index = -1;
+                    }
+
+                    if(this.index!=-1)
+                    {
+                        console.log(this.index); 
+                        this.todos.splice(this.index,1);      
+                    }                    
+                },
+            }
+            
+        });
+    </script>
+</body>
+</html>
