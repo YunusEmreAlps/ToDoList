@@ -1,15 +1,14 @@
+const STORAGE_KEY = "todo-storage";
 new Vue({
     el:"#app",
     data:{
         // string, boolean
-        todos:[
-            {text:"Cook", done:false},
-            {text:"Code", done:true},
-            {text:"Basketball", done:true},
-            {text:"Sleep", done:false}
-        ],
+        todos:[],
         index:0,
         control:null
+    },
+    created() {
+        this.todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
     },
     methods : {
         toggle:function(todo){
@@ -29,7 +28,8 @@ new Vue({
                 }
                 if(this.control == false || this.todos.length==0)
                 {
-                    this.todos.push({text:e.target.value, done:false});   
+                    this.todos.push({text:e.target.value, done:false});  
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(this.todos)); 
                     return false;   
                 }
             }
@@ -52,9 +52,9 @@ new Vue({
             if(this.index!=-1)
             {
                 console.log(this.index); 
-                this.todos.splice(this.index,1);      
+                this.todos.splice(this.index,1);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(this.todos));      
             }                    
         },
     }
-    
 });
