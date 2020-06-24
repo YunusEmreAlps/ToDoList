@@ -1,49 +1,91 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do Example</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>To Do List</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- css -->
-    <link rel="stylesheet" href="index.css"/>
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/new-age.min.css" rel="stylesheet">
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    
-</head>
-<body>
-    
-    <div class="container w-sm-100 p-5" id="app">
-        <div class="form-group ldesgn">
-            <h2 class="text-dark text-center display-3 pb-3">My Tasks</h2>
-            <div class="alert alert-info" role="alert"  v-if="todos.length==0">
-               Task list is empty
-            </div>
-            <div class="alert alert-danger" role="alert"  v-if="control==true && todos.length!=0 ">
-                This task has on your list.
-            </div>
-            <div class="alert alert-success" role="alert"  v-if="control==false && todos.length!=0">
-                Success
-            </div>
-            <input class="form-control text-dark" type="text" @keypress.enter="addAct($event)" placeholder="Add a new task"><br/>
-            <ol class="form-check text-dark">
-                <li v-for="todo in todos">
-                    <label>
-                        <input class="text-dark" type="checkbox" v-on:change="toggle(todo)" v-bind:checked="todo.done">
-                        <del class="text-success" v-if="todo.done" v-text="todo.text"></del>
-                        <span class="text-danger" v-else="todo.done" v-text="todo.text"></span>
+  </head>
+  <body id="page-top" class="bg-light">
+    <!-- Section -->
+    <section>
+      <div class="container" id="app">
+        <!-- Grid row -->
+        <div class="row d-flex justify-content-center mt-5">
+          <!-- Grid column-->
+          <div class="col-md-10 col-sm-10">
+            <div class="border border-dark bg-white">
+              <!-- Header -->
+              <div class="section-heading text-center mt-5">
+                <img alt="avatar" src="img/avatar.png" width="100" height="100" />
+                <h2>My Tasks</h2>
+                <span class="text-muted">Organize it all with To Do List</span>
+                <hr/>
+              </div>
+              <!-- Header -->
+              <div class="mt-3 ml-5 mb-5 mr-5">
+                <!-- Error message -->
+                <div class="alert alert-info" role="alert"  v-if="todos.length==0">
+                    Task list is empty
+                </div>
+                <div class="alert alert-danger" role="alert"  v-if="control==true && todos.length!=0 ">
+                    This task has on your list.
+                </div>
+                <div class="alert alert-success" role="alert"  v-if="control==false && todos.length!=0">
+                    Success
+                </div>
+                <!-- Error message -->
+                <!-- Task input -->
+                <div class="form-group">
+                    <label for="username-label">Add a new task</label>
+                    <input type="text" class="form-control text-dark" style="font-size: 15px;" @keypress.enter="addAct($event)">
+                <div>   
+                <!-- Task input -->
+                <!-- List -->
+                <ol class="form-check text-dark mt-5 mb-5" >
+                    <li v-for="todo in todos">
+                        <label>
+                            <div class="custom-checkbox">
+                                <input class="checkbox" type="checkbox" v-on:change="toggle(todo)" v-bind:checked="todo.done">
+                                <label class="custom-checkbox-label"></label>
+                                <del class="text-success" style="font-size: 15px;" v-if="todo.done" v-text="todo.text"></del>
+                                <span class="text-danger" style="font-size: 15px;" v-else="todo.done" v-text="todo.text"></span>
+                             </div>
 
-                    </label>
-                    <i  type="button" class="material-icons float-right text-danger" v-on:click="delbut(todo.text)">&#xe872;</i>
-                    <hr/>
-                </li>
-            </ol>
+                        </label>
+                        <i  type="button" class="material-icons float-right text-danger" v-on:click="delbut(todo.text)">&#xe872;</i>
+                        <hr/>
+                    </li>
+                </ol>
+                <!-- List -->
+              </div>
+            </div>
+          </div>
+          <!-- Grid column-->
         </div>
-    </div>
-
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section -->
     <!-- Vue.js -->
-    <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>         
+  </body>
 </html>
