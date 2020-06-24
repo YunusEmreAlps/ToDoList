@@ -27,7 +27,7 @@
             <div class="alert alert-success" role="alert"  v-if="control==false && todos.length!=0">
                 Success
             </div>
-            <input class="form-control text-dark" type="text" @keypress.enter="addAct($event)" placeholder="Add new a new task"><br/>
+            <input class="form-control text-dark" type="text" @keypress.enter="addAct($event)" placeholder="Add a new task"><br/>
             <ol class="form-check text-dark">
                 <li v-for="todo in todos">
                     <label>
