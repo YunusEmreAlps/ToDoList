@@ -10,4 +10,4 @@
 > - It will let you save time.<br/>
 > - It will help you be more reliable.<br/>
 
-> **[You can try](https://yunusemrealps.github.io/Todos-Example/index.html)**
+> **[You can try](https://yunusemrealps.github.io/ToDoList/index.html)**
