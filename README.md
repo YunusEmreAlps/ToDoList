@@ -12,4 +12,4 @@
 
 > **!! If you want to check task, please click text !!**
 
-> **[You can try](https://yunusemrealps.github.io/ToDoList/index.html)**
+> **[You can try](https://yunusemrealps.github.io/ToDoList/)**
