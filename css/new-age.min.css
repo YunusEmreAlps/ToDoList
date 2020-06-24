@@ -379,7 +379,7 @@
   
   .custom-checkbox input[type=checkbox]
 {
-  position:absolute;
+  position: relative;
   opacity:0; 
 }
 .custom-checkbox-label
@@ -391,9 +391,23 @@
    height:30px;
    border:1px solid #ddd;
    display:inline-block;
-   cursor:pointer;
+   cursor:default;
 }
-
+.checkbox + .custom-checkbox-label
+{
+  background:#cd201f;
+  border:1px solid #cd201f !important;
+  color:#cd201f;
+}
+.checkbox + .custom-checkbox-label:before 
+{
+    content:"NO";
+    color:white;
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+}
 .checkbox:checked + .custom-checkbox-label
 {
   background:#02b875;
